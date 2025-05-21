@@ -1,0 +1,38 @@
+import pandas as pd
+
+def get_mock_ground_truth(user_id):
+    data = {
+        'movie_id': [1, 5, 10],
+        'title': ['Toy Story (1995)', 'Heat (1995)', 'GoldenEye (1995)'],
+        'rating': [5, 4, 3]
+    }
+    return pd.DataFrame(data)
+
+def get_mock_predictions(user_id):
+    data = {
+        'movie_id': [1, 2, 3, 4, 5],
+        'title': [
+            'Toy Story (1995)', 
+            'Jumanji (1995)', 
+            'Grumpier Old Men (1995)', 
+            'Waiting to Exhale (1995)', 
+            'Heat (1995)'
+        ],
+        'predicted_rating': [4.8, 4.5, 4.2, 3.9, 4.7]
+    }
+    return pd.DataFrame(data)
+
+def get_mock_recommendations(user_id, top_n):
+    data = {
+        'title': [
+            "The Matrix (1999)", 
+            "Inception (2010)", 
+            "Interstellar (2014)", 
+            "The Dark Knight (2008)", 
+            "Fight Club (1999)"
+        ][:top_n],
+        'score': [4.9, 4.8, 4.7, 4.6, 4.5][:top_n],
+        'relevance': [1, 1, 1, 1, 1][:top_n],
+        'ndcg': [0.98, 0.95, 0.92, 0.89, 0.85][:top_n]
+    }
+    return pd.DataFrame(data)
