@@ -1,15 +1,16 @@
 import streamlit as st
 
-st.title("🎬 Sistem Rekomendasi Film")
+st.title("🎬 Sistem Rekomendasi")
 st.markdown("""
-Selamat datang di **Sistem Rekomendasi Film** berbasis dataset MovieLens 100K.  
-Aplikasi ini menggunakan model prediksi dan evaluasi menggunakan metrik **NDCG**  
-untuk memberikan rekomendasi film terbaik kepada pengguna.
+Selamat datang di **Sistem Rekomendasi Film** dengan menggunakan dataset MovieLens 100K.  
+Aplikasi ini menggunakan model berbasis Hybrid dengan kombinasi User-Based (UBCF) dan Item-Based (IBCF) serta untuk evaluasi menggunakan metrik **NDCG**  
 
 **Fitur utama:**
-- Evaluasi berdasarkan NDCG
-- Pilihan metode Similarity (Cosine, Pearson, Jaccard)
-- Tampilan riwayat data, prediksi, dan hasil rekomendasi
+- Sistem Rekomendasi Berbasis Collaborative Filtering
+- Menggnakan Pendekatan Hybrid (User-Based dan Item-Based)
+- Pilihan metode Similarity : Jaccard, Relevant Jaccard (RJ)
+- Evaluasi Menggunakan Metrik Evaluasi NDCG(Normalized Discounted Cumulative Gain)
+- Tampilan Home, Rumus, dan Prediksi
 """)
 
 st.image("https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif", width=400)

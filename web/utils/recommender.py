@@ -1,12 +1,21 @@
 import pandas as pd
 
-def get_mock_ground_truth(user_id):
-    data = {
-        'movie_id': [1, 5, 10],
-        'title': ['Toy Story (1995)', 'Heat (1995)', 'GoldenEye (1995)'],
-        'rating': [5, 4, 3]
-    }
-    return pd.DataFrame(data)
+def load_ratings(path='utils/data/u.data'):
+    columns = ['user_id', 'movie_id', 'rating', 'timestamp']
+    return pd.read_csv(path, sep='\t', names=columns)
+
+def load_movies(path='utils/data/u.item'):
+    columns = ['movie_id', 'title'] + [f'col{i}' for i in range(22)]
+    df = pd.read_csv(path, sep='|', names=columns, encoding='latin-1')
+    return df[['movie_id', 'title']]
+
+def load_test_data(fold=1):
+    path = f'utils/data/u{fold}.test'
+    columns = ['user_id', 'movie_id', 'rating', 'timestamp']
+    return pd.read_csv(path, sep='\t', names=columns)
+
+
+
 
 def get_mock_predictions(user_id):
     data = {
