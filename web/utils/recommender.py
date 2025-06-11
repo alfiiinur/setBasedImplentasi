@@ -3,6 +3,9 @@ import pandas as pd
 def load_test_data():
     return pd.read_csv("utils/data/u1.test", sep="\t", names=["user_id", "movie_id", "rating", "timestamp"])
 
+def load_training_data():
+    return pd.read_csv("utils/data/u1.base", sep="\t", names=["user_id", "movie_id", "rating", "timestamp"])
+
 def load_item_data():
     return pd.read_csv("utils/data/u.item", sep="|", names=["movie_id", "title"], encoding='latin-1', usecols=[0, 1])
 
