@@ -13,5 +13,3 @@ Aplikasi ini menggunakan model berbasis Hybrid dengan kombinasi User-Based (UBCF
 - Tampilan Home, Rumus, dan Prediksi
 """)
 
-st.image("https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif", width=400)
-st.success("Mulai dari tab *🔍 Similarity* di sidebar!")
