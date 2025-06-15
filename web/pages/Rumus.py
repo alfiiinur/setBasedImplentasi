@@ -89,8 +89,8 @@ st.markdown(r"""
 
 # Hybrid
 st.markdown("## ♻️ **Hybrid Recommendation (Linear Combination)**")
-st.latex(r"\hat{r}_{u,i}^{hybrid} = \alpha \cdot \hat{r}_{u,i}^{user} + (1 - \alpha) \cdot \hat{r}_{u,i}^{item}")
-st.info("Menggabungkan prediksi dari user-based dan item-based dengan bobot \( \alpha \).")
+st.latex(r"\hat{r}_{u,i}^{hybrid} = \gamma \cdot \hat{r}_{u,i}^{user} + (1 - \gamma) \cdot \hat{r}_{u,i}^{item}")
+st.info("Menggabungkan prediksi dari user-based dan item-based dengan bobot \( $\gamma$ \).")
 
 # Top-N Recommendation
 st.markdown("## 🧾 **Top-N Recommendation**")
@@ -101,14 +101,24 @@ st.info("Digunakan untuk menghasilkan daftar rekomendasi terbaik bagi setiap pen
 
 
 # DCG / IDCG / NDCG
-st.markdown("## 📊 **Evaluasi NDCG (Normalized Discounted Cumulative Gain)**")
+st.markdown("##  **Evaluasi NDCG (Normalized Discounted Cumulative Gain)**")
 
-st.markdown("### 🎯 **DCG (Discounted Cumulative Gain):**")
-st.latex(r"DCG_k = \sum_{i=1}^{k} \frac{2^{rel_i} - 1}{\log_2(i + 1)}")
+st.markdown("###  **DCG (Discounted Cumulative Gain):**")
+st.latex(r"DCG(GT_u, TopN_u, N) = \sum_{n=1}^{N} \frac{1}{log_2(1+n)}  \cdot \parallel (TopN_u(n) \in  GT_u)")
 
-st.markdown("### 🥇 **IDCG (Ideal DCG):**")
-st.latex(r"IDCG_k = \sum_{i=1}^{k} \frac{2^{rel_i^*} - 1}{\log_2(i + 1)}")
+st.markdown("###  **IDCG (Ideal DCG):**")
+st.latex(r"IDCG_(N) = \sum_{n=1}^{N} \frac{1}{log_2(1+n)}")
 
-st.markdown("### 🧮 **NDCG (Normalized DCG):**")
-st.latex(r"NDCG_k = \frac{DCG_k}{IDCG_k}")
-st.info("NDCG mengukur efektivitas rekomendasi dengan mempertimbangkan posisi dan relevansi item.")
+st.markdown("###  **NDCG (Normalized DCG):**")
+st.latex(r"NDCG_(GT_u, TopN_u, N) = \frac{DCG(GT_u, TopN_u, N)}{IDCG_(N)}")
+# keterangan 
+st.markdown("**Keterangan:**")
+st.markdown(r"""
+- $GT_u$ : Ground truth (data sebenarnya) untuk user $u$.
+- $TopN_u$ : Daftar rekomendasi teratas untuk user $u$.
+- $N$ : Jumlah item yang direkomendasikan.
+- $log_2(1+n)$ : Faktor diskon yang mengurangi bobot item berdasarkan posisinya dalam daftar.
+- $DCG$ : Mengukur relevansi kumulatif dari item yang direkomendasikan.
+- $IDCG$ : Mengukur relevansi ideal dari item yang direkomendasikan.
+- $NDCG$ : Normalisasi dari DCG untuk membandingkan efektivitas rekomendasi.
+""")
