@@ -27,14 +27,24 @@ def generate_recommendations(user_id, method, k=20):
 
     try:
         topn_ids = topn[user_id - 1][:k]
-    except IndexError:
+    except (IndexError, KeyError):
         topn_ids = []
 
+    # Buat DataFrame rekomendasi
     recommended = item_data[item_data["movie_id"].isin(topn_ids)].copy()
 
+    # Tambahkan kolom 'top_n' sesuai urutan dalam topn_ids
+    recommended["top_n"] = recommended["movie_id"].apply(
+        lambda x: topn_ids.index(x) + 1 if x in topn_ids else None
+    )
+
+    # Urutkan berdasarkan top_n agar tampil sesuai peringkat
+    recommended.sort_values("top_n", inplace=True)
+
+    # Ambil skor NDCG
     try:
         ndcg_score = ndcg_df.loc[f"User-{user_id}", f"NDCG@{k}"]
-    except:
+    except (KeyError, ValueError):
         ndcg_score = 0.0
 
     return recommended, ndcg_score

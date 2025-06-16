@@ -8,6 +8,9 @@ from utils.recommender import (
     get_intersection
 )
 
+
+
+
 # Fungsi highlight baris yang cocok
 def highlight_matches(row, match_ids):
     if row['movie_id'] in match_ids:
@@ -16,14 +19,14 @@ def highlight_matches(row, match_ids):
         return [''] * len(row)
 
 st.set_page_config(page_title="Rekomendasi Film", page_icon="🎬", layout="wide")
-st.title("🔍 Rekomendasi Film Berdasarkan Similarity")
+st.title("🔍 Rekomendasi Film Berdasarkan Fungsi Similaritas")
 
 # ========================
 # Form Input
 # ========================
 similarity_method = st.selectbox("📌 Pilih Fungsi Similaritas", ["Jaccard", "RJ"])
 top_n = st.selectbox("🔢 Top-N Rekomendasi", list(range(1, 21)), index=4)  # default 5
-user_id = st.number_input("👤 Masukkan User ID", min_value=1, max_value=943, step=1)
+user_id = st.number_input("👤 Masukkan User ID", min_value=1, max_value=459, step=1)
 
 # ========================
 # Proses Rekomendasi
@@ -62,6 +65,12 @@ if st.button("🎯 Proses Rekomendasi"):
 
 
 
+    # def add_index_column(df):
+    #     df = df.reset_index(drop=True)
+    #     df.insert(0, 'No', df.index)
+    #     return df
+
+
     with col1:
         st.subheader("🎯 Ground Truth (Test Set)")
         # st.divider()
@@ -80,6 +89,7 @@ if st.button("🎯 Proses Rekomendasi"):
         else:
             st.dataframe(gt_train[['movie_id', 'title', 'rating']])
 
+
     with col3:
         st.subheader("📢 Rekomendasi")
         # st.divider()
@@ -90,14 +100,12 @@ if st.button("🎯 Proses Rekomendasi"):
             st.markdown(f"Jumlah item cocok dengan ground truth: `{len(intersection)}` dari Top-{top_n}`")
 
             match_ids = intersection["movie_id"].tolist()
-            styled_recs = recommended_df[['movie_id', 'title']].style.apply(
-                highlight_matches, axis=1, match_ids=match_ids
-            )
+            styled_recs = recommended_df[['movie_id', 'top_n', 'title']].style.apply(highlight_matches, axis=1, match_ids=match_ids)
             st.dataframe(styled_recs)
 
             if not intersection.empty:
                 st.markdown("### ✅ Irisan dengan Ground Truth")
-                st.dataframe(intersection[['movie_id', 'title']])
+                st.dataframe(intersection[['movie_id', 'top_n', 'title']])
 
 else:
     st.info("Silakan masukkan parameter dan klik tombol untuk melihat hasil rekomendasi.")
