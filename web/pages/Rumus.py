@@ -74,7 +74,7 @@ st.markdown("####  **User-Based CF Prediction:**")
 st.latex(r"\hat{\mathrm{r}}_{u,i}^{User} = \mu_{User(u)} + \frac{\sum_{v \in \mathrm{N}_{u}^{i}} sim(u,v) \cdot (S_{User(v,i)})}{\sum_{v \in \mathrm{N}_{u}^{i}} |sim_{User}(u,v)|}")
 
 st.markdown("####  **Item-Based CF Prediction:**")
-st.latex(r"\hat{\mathrm{r}}_{u,i}^{User} = \mu_{User(u)} + \frac{\sum_{v \in \mathrm{N}_{u}^{i}} sim(u,v) \cdot (S_{User(v,i)})}{\sum_{v \in \mathrm{N}_{u}^{i}} |sim_{User}(u,v)|}")
+st.latex(r"\hat{\mathrm{r}}_{u,i}^{Item} = \mu_{Item(i)} + \frac{\sum_{j \in \mathrm{N}_{u}^{i}} sim(i,j) \cdot (S_{Item(u,j)})}{\sum_{j \in \mathrm{N}_{u}^{i}} |sim_{Item}(i,j)|}")
 
 # markdown
 st.markdown("**Keterangan:**")

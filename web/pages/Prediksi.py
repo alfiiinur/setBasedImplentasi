@@ -74,7 +74,8 @@ if st.button("🎯 Proses Rekomendasi"):
     with col1:
         st.subheader("🎯 Ground Truth (Test Set)")
         # st.divider()
-        st.text(f"Data rekomendasi yang cocok dengan data test (interseksi) sebanyak {len(intersection)} item.")
+        st.text("Data test dari target user yang didapatkan dari dataset dan untuk digunakan di dalam evaluasi hasil rekomendasi metode. Data Test didapatkan  sebanyak `20%` dari data training.")
+
         if gt_test.empty:
             st.warning("User tidak memiliki data test.")
         else:
@@ -93,7 +94,8 @@ if st.button("🎯 Proses Rekomendasi"):
     with col3:
         st.subheader("📢 Rekomendasi")
         # st.divider()
-        st.text("Data test dari target user yang didapatkan dari dataset dan untuk digunakan di dalam evaluasi hasil rekomendasi metode. Data Test didapatkan  sebanyak ")
+        st.text(f"Data rekomendasi yang cocok dengan data test (interseksi) sebanyak {len(intersection)} item.")
+
         if recommended_df.empty:
             st.warning("Tidak ada rekomendasi.")
         else:
