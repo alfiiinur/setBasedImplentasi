@@ -11,10 +11,10 @@ def load_item_data():
     return pd.read_csv("utils/data/u.item", sep="|", names=["movie_id", "title"], encoding='latin-1', usecols=[0, 1])
 
 def load_topn(method):
-    return joblib.load(f"utils/model/topN/{method}/5_10_1.joblib")
+    return joblib.load(f"utils/model/topN/{method}/topNterbaik.joblib")
 
 def load_ndcg(method):
-    return joblib.load(f"utils/model/ndcg/{method}/5_10_1_ndcg.joblib")
+    return joblib.load(f"utils/model/ndcg/{method}/ndcgTerbaik.joblib")
 
 def get_intersection(recommended_df, ground_truth_df):
     return pd.merge(recommended_df, ground_truth_df[['movie_id']], on='movie_id', how='inner')
