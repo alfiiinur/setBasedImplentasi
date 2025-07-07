@@ -1,6 +1,8 @@
 import pandas as pd
 import joblib
 
+# load data
+
 def load_test_data():
     return pd.read_csv("utils/data/u1.test", sep="\t", names=["user_id", "movie_id", "rating", "timestamp"])
 
@@ -16,10 +18,14 @@ def load_topn(method):
 def load_ndcg(method):
     return joblib.load(f"utils/model/ndcg/{method}/ndcgTerbaik.joblib")
 
+
+# ambil intersection antara rekomendasi dan ground truth
 def get_intersection(recommended_df, ground_truth_df):
     return pd.merge(recommended_df, ground_truth_df[['movie_id']], on='movie_id', how='inner')
 
 
+
+# generate rekomendasi untuk user tertentu
 def generate_recommendations(user_id, method, k=20):
     item_data = load_item_data()
     topn = load_topn(method)
