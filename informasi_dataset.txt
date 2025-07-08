@@ -1,0 +1,10 @@
+Dataset Name: MovieLens 100K
+Original URL: https://grouplens.org/datasets/movielens/100k/
+Total Ratings: 100,000
+Total Users: 943
+Total Movies: 1,682
+Data Format: UserID | MovieID | Rating |Timestamp
+
+Cross-validation: 5-fold
+Training files: u1.base to u5.base
+Testing files: u1.test to u5.test
